@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv'
-
+import fs from 'node:fs'
 dotenv.config()
 
 const app = express();
@@ -11,7 +11,8 @@ app.use(cors());
 const lista = [];
 
 app.get('/', (req, res) => {
-    res.sendFile(process.env.INIT_CWD + '/index.html');
+    
+    return res.sendFile('index.html');
 })
 
 app.get('/musicas', (req, res) => {
@@ -42,4 +43,4 @@ app.listen(3000, 'localhost', () => {
     console.log('Server is running on port http://localhost:3000');
 });
 
-module.exports = app;
+export default app;
