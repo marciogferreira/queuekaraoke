@@ -1,7 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-
-
+import { v4 as uuidv4 } from 'uuid';
 
 const app = express();
 app.use(express.json());
@@ -20,6 +19,8 @@ app.get('/musicas', (req, res) => {
 
 app.post('/musicas', (req, res) => {
     const body = req.body;
+    const myUUID = uuidv4();
+    body.id = myUUID;
     lista.push(body);
     return res.status(200).json({ message: 'Música Salva com Sucesso.'})
 })
@@ -28,12 +29,12 @@ app.put('/musicas/:indice', (req, res) => {
     const indice = req.params.indice;
     const body = req.body;
     const indiceLista = lista.findIndex(indiceLista => indice === indiceLista)
-    lista[indiceLista] = body;
     return res.status(200).json({ message: 'Música Atualizada com Sucesso.'})
 })
 
-app.delete('/musicas/:indice', (req, res) => {
-    const indice = req.params.indice;
+app.delete('/musicas/:id', (req, res) => {
+    const id = req.params.id;
+    const indice = lista.findIndex(item => item.id === id)
     lista.splice(indice, 1);
     return res.status(200).json({ message: 'Música Removida com Sucesso.'})
 })
