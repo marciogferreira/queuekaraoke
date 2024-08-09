@@ -12,7 +12,7 @@ const lista = [];
 
 app.get('/', (req, res) => {
     
-    return res.sendFile('index.html');
+    return res.send("Hello Karaoke")
 })
 
 app.get('/musicas', (req, res) => {
