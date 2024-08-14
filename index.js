@@ -26,7 +26,7 @@ const lista = [
     
 ];
 app.get('/', (req, res) => {
-    return res.send("Hello Karaoke")
+    return res.send("Hello Karaoke v.1.0.2")
 })
 
 app.get('/musicas', (req, res) => {
